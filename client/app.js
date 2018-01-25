@@ -14,7 +14,7 @@ var router =
         <Router history={browserHistory}>
             <Route path="/" component={App} >
                 <IndexRoute component={AllPostComponent} />
-                <Route path="/singlepost" component={SingleComponent} />
+                <Route path="/viewPost/:codeId" component={SingleComponent} />
             </Route>
         </Router>
     </Provider>

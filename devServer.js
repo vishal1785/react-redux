@@ -13,9 +13,20 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('*', function(req, res) {
+app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+var router = express.Router();
+router.route('/posts').get(function(req,res){
+  res.sendFile(path.join(__dirname,'rest-data/posts.js'));
+});
+
+router.route('/comments').get(function(req,res){
+  res.sendFile(path.join(__dirname,'rest-data/comments.js'));
+});
+
+app.use('/api',router);
 
 app.listen(7770, 'localhost', function(err) {
   if (err) {
